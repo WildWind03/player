@@ -7,7 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Logger;
 
 /**
- * An extremely simplified thread-safe implementation of a message broker pattern
+ * An extremely simplified thread-safe implementation of the message broker pattern
  */
 public class MessageBroker implements Runnable {
     private static final int QUEUE_SIZE = 200;
@@ -18,7 +18,7 @@ public class MessageBroker implements Runnable {
     private final ConcurrentMap<String, BlockingQueue<Message>> processedMessagesByQueueId = new ConcurrentHashMap<>();
 
     /**
-     * Adds the message to the internal message queue. The message will be processed later in the message broker thread.
+     * Adds the message to the internal message queue. The message will be processed later in the message broker thread
      *
      * @param message a message to put
      * @return true if the message was actually put or false otherwise
@@ -27,7 +27,7 @@ public class MessageBroker implements Runnable {
         boolean added = messageQueue.add(new QueueMessage(queue, message));
 
         if (added) {
-            LOGGER.info(String.format("The message %s was successfully added to the internal queue and will " +
+            LOGGER.info(String.format("The message %s was successfully added to the internal queue and will be " +
                             "processed later", message.getText()));
         }
 
@@ -44,7 +44,7 @@ public class MessageBroker implements Runnable {
                 String queueName = queueMessage.getQueueName();
                 Message message = queueMessage.getMessage();
 
-                LOGGER.info(String.format("The message %s has been taken", message.getText()));
+                LOGGER.info(String.format("The message %s has been taken from the queue", message.getText()));
 
                 processedMessagesByQueueId.putIfAbsent(queueName, new LinkedBlockingQueue<>(QUEUE_SIZE));
 

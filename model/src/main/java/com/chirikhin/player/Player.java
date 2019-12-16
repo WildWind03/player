@@ -38,17 +38,25 @@ public abstract class Player implements Runnable {
         LOGGER.info(String.format("The player %s has finished", id));
     }
 
-    public void handleMessage(Message messageFromQueue) {
-        sendMessage(messageFromQueue);
+    /**
+     * Handles the message by incrementing the message counter and calling {@link Player#sendMessage(Message)}
+     * @param message a message to handle
+     */
+    public void handleMessage(Message message) {
+        sendMessage(message);
         ++sentMessagesCounter;
         LOGGER.info(String.format("The player %s successfully handled the message: %s", id,
-                messageFromQueue));
+                message.getText()));
     }
-
 
     protected int getSentMessagesCounter() {
         return sentMessagesCounter;
     }
 
+    /**
+     * The method is executed after {@link Player#handleMessage(Message)} and is designed to expressly implement
+     * the logic of sending message
+     * @param message a message to send
+     */
     abstract protected void sendMessage(Message message);
 }

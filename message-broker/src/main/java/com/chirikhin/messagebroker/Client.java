@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.logging.Logger;
 
 /**
- * A client representation on a message broker side. During running, it reads messages from the specified input
+ * It is a client representation on the message broker side. During running, it reads messages from the specified input
  * stream and then handles that messages in different ways based on their types
  */
 public class Client implements Runnable {
@@ -49,8 +49,8 @@ public class Client implements Runnable {
                 LOGGER.info("The new object was successfully read");
 
                 if (!(object instanceof ServerRequest)) {
-                    LOGGER.severe(String.format("A serialized object is not an instance of the ServerRequest class. " +
-                            "It'll be ignored. It is an instance of %s", object.getClass().getName()));
+                    LOGGER.severe(String.format("A serialized object is not an instance of the ServerRequest class. "
+                            + "It'll be ignored. It is an instance of %s", object.getClass().getName()));
                     continue;
                 }
 

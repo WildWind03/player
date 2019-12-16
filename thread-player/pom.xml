@@ -20,7 +20,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>com.chirikhin.player.thread.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
